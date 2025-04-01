@@ -1,31 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import TextBox from './TextBox';
 import './SlideEditor.css'; // 슬라이드 편집기 전용 CSS 파일 import
 
-// SlideEditor 컴포넌트: 제목과 부제목을 입력할 수 있는 영역
+// SlideEditor 컴포넌트: 제목과 부제목 텍스트 박스를 포함하는 편집 화면
 const SlideEditor: React.FC = () => {
-  // 제목과 부제목 상태 정의
-  const [title, setTitle] = useState('');
-  const [subtitle, setSubtitle] = useState('');
-
   return (
     // 전체 슬라이드 편집 영역 컨테이너
     <div className="slide-editor">
-      {/* 제목 입력 필드 */}
-      <input
-        type="text"
+      {/* 제목 텍스트 박스 */}
+      <TextBox
+        defaultText="제목을 추가하려면 클릭하십시오."
         className="slide-title"
-        placeholder="제목을 추가하려면 클릭하십시오."
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
       />
 
-      {/* 부제목 입력 필드 */}
-      <input
-        type="text"
+      {/* 부제목 텍스트 박스 */}
+      <TextBox
+        defaultText="부제목을 입력하십시오"
         className="slide-subtitle"
-        placeholder="부제목을 입력하십시오"
-        value={subtitle}
-        onChange={(e) => setSubtitle(e.target.value)}
       />
     </div>
   );

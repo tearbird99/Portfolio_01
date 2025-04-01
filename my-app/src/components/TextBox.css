@@ -1,0 +1,43 @@
+:root {
+    --dotted-border: 1px dotted rgba(0, 0, 0, 0.5);
+    --solid-border: 1px solid #555;
+  }
+  
+  .text-box {
+    position: absolute;
+    padding: 8px;
+    min-width: 100px;
+    min-height: 30px;
+    border: var(--dotted-border);
+    background: transparent;
+    text-align: center;
+    outline: none;
+    user-select: text;
+    
+  }
+  
+  /* 선택된 상태에서는 실선으로 */
+  .text-box.selected {
+    border: var(--solid-border);
+  }
+  
+  /* 리사이즈 핸들 공통 */
+  .resize-handle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border: 1px solid #888;
+    border-radius: 50%;
+  }
+  
+  /* 위치별 핸들 (8방향) */
+  .top-left       { top: -4px; left: -4px; cursor: nwse-resize; }
+  .top            { top: -4px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+  .top-right      { top: -4px; right: -4px; cursor: nesw-resize; }
+  .right          { top: 50%; right: -4px; transform: translateY(-50%); cursor: ew-resize; }
+  .bottom-right   { bottom: -4px; right: -4px; cursor: nwse-resize; }
+  .bottom         { bottom: -4px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+  .bottom-left    { bottom: -4px; left: -4px; cursor: nesw-resize; }
+  .left           { top: 50%; left: -4px; transform: translateY(-50%); cursor: ew-resize; }
+  

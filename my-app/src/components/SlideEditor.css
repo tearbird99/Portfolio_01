@@ -22,14 +22,14 @@
 
 /* 제목 텍스트 입력 상자 스타일 */
 .slide-title {
-    font-size: 36px;
-    font-weight: bold;
+    font-size: 48px;
     text-align: center;
     position: absolute;
-    top: 25%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 75%;
+    height: 30%;
 
     border: var(--dotted-border);
     padding: 8px;
@@ -37,13 +37,14 @@
 
 /* 부제목 텍스트 입력 상자 스타일 */
 .slide-subtitle {
-    font-size: 20px;
+    font-size: 24px;
     text-align: center;
     position: absolute;
-    top: 45%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
+    width: 75%;
+    height: 25%;
 
     border: var(--dotted-border);
     padding: 6px;
