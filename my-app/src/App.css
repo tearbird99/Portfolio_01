@@ -1,0 +1,12 @@
+.App {
+    width: 100vw;
+    height: 120vh;
+    min-height: 100vh;
+    padding-top: 56px;
+    background-color: rgb(240, 240, 240);
+}
+
+.functools {
+    background-color: white;
+    width: 100%;
+}
