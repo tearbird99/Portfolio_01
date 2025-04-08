@@ -16,7 +16,7 @@ const menuItems = [
 function TopNavbar({ activeTab, setActiveTab }: TopNavbarProps) {
   return (
     // 상단 고정 네비게이션 바
-    <Navbar bg="light" fixed="top" onClick={(e) => e.stopPropagation()}>
+    <Navbar fixed="top" onClick={(e) => e.stopPropagation()}>
       {/* fluid 설정으로 좌우 여백 제거 */}
       <Container fluid>
         <Nav className="me-auto">

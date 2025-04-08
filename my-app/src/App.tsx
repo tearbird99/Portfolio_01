@@ -9,7 +9,7 @@ function App() {
   // 현재 활성화된 상단 메뉴 탭 (예: '파일', '홈' 등)
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
-  const [slides] = useState<number[]>([1]);
+  const [slides] = useState<number[]>([1, 2, 3]);
   const [currentSlide, setCurrentSlide] = useState<number>(1);
 
   return (
