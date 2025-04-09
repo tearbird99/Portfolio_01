@@ -3,14 +3,27 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TopNavbar from './components/TopNavBar';
 import SlideThumbnails from './components/SlideThumbnails';
+import SlideEditor from './components/SlideEditor';
 
 // App 컴포넌트: 전체 웹 파워포인트 앱의 루트 컴포넌트
 function App() {
   // 현재 활성화된 상단 메뉴 탭 (예: '파일', '홈' 등)
   const [activeTab, setActiveTab] = useState<string | null>(null);
 
-  const [slides] = useState<number[]>([1, 2, 3]);
-  const [currentSlide, setCurrentSlide] = useState<number>(1);
+  const [slides, setSlides] = useState([
+    { id: 1, thumbnail: '' },
+    { id: 2, thumbnail: '' },
+    { id: 3, thumbnail: '' },
+  ]);
+  const [currentSlide, setCurrentSlide] = useState(1);
+
+  const handleCapture = (dataUrl: string) => {
+    setSlides((prev) =>
+      prev.map((slide) =>
+        slide.id === currentSlide ? { ...slide, thumbnail: dataUrl } : slide
+      )
+    );
+  };
 
   return (
     // App 전체 영역. 빈 공간 클릭 시 activeTab을 null로 초기화
@@ -34,10 +47,7 @@ function App() {
           setCurrentSlide={setCurrentSlide}
         />
 
-        <div className="slide-editor">
-          <h2>슬라이드 {currentSlide}</h2>
-          <p>편집 영역</p>
-        </div>
+        <SlideEditor onCapture={handleCapture} />
       </div>
     </div>
   );

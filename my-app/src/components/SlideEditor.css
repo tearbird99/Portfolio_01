@@ -1,0 +1,17 @@
+.slide-editor {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    height: calc(100vh - 56px);
+    padding-left: 240px;
+}
+
+.slide-box {
+    width: 960px;
+    height: 540px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
