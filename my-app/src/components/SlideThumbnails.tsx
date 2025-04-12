@@ -17,6 +17,7 @@ function SlideThumbnails({ slides, currentSlide, setCurrentSlide }: SlideThumbna
           className={`slide-thumbnail ${currentSlide === slide.id ? 'active' : ''}`}
           onClick={() => setCurrentSlide(slide.id)}
         >
+          <div className="thumbnail-number">{slide.id}</div>
           {slide.thumbnail ? (
             <img src={slide.thumbnail} alt={`Slide ${slide.id}`} className="thumbnail-image" />
           ) : (
