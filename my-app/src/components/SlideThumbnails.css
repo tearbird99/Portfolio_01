@@ -1,11 +1,16 @@
 .slide-thumbnails {
     position: fixed;
     width: 240px;
+    height: 100vh;
     background-color: #F5F5F5;
     border-right: 1px solid #ddd;
     padding: 16px;
     padding-top: 48px;
     overflow-y: auto;
+}
+
+.slide-thumbnails:focus {
+    outline: none;
 }
 
 .slide-thumbnail {
@@ -33,6 +38,7 @@
     z-index: 1;
     pointer-events: none;
 }
+
 .slide-thumbnail.active .thumbnail-number {
     color: #C43E1C;
 }

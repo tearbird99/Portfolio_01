@@ -12,7 +12,7 @@ const menuItems = [
   '애니메이션', '슬라이드 쇼', '검토', '보기', '도움말'
 ];
 
-// TopNavbar 컴포넌트: 상단 메뉴바를 렌더링함
+// TopNavbar 컴포넌트: 상단 메뉴바 렌더링
 function TopNavbar({ activeTab, setActiveTab }: TopNavbarProps) {
   return (
     // 상단 고정 네비게이션 바

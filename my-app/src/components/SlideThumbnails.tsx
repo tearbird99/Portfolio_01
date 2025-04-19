@@ -1,7 +1,5 @@
 import './SlideThumbnails.css';
 
-import './SlideThumbnails.css';
-
 interface SlideThumbnailsProps {
   slides: { id: number; thumbnail: string }[];
   currentSlide: number;
@@ -10,7 +8,7 @@ interface SlideThumbnailsProps {
 
 function SlideThumbnails({ slides, currentSlide, setCurrentSlide }: SlideThumbnailsProps) {
   return (
-    <div className="slide-thumbnails">
+    <div className="slide-thumbnails" tabIndex={0}>
       {slides.map((slide) => (
         <div
           key={slide.id}
