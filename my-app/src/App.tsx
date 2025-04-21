@@ -17,6 +17,36 @@ function App() {
     thumbnail: string; // html2canvas
   };
 
+  // 텍스트 상자
+  type TextBoxType = {
+    id: number;
+    x: number;
+    y: number;
+    text: string;
+  };
+  
+  const [textBoxes, setTextBoxes] = useState<TextBoxType[]>([]);
+
+  // 텍스트 상자 추가가 함수
+  const handleAddTextBox = () => {
+    const newBox: TextBoxType = {
+      id: Date.now(),
+      x: 200,
+      y: 200,
+      text: '텍스트를 입력하세요',
+    };
+    setTextBoxes((prev) => [...prev, newBox]);
+  };  
+
+  // 텍스트 변경 핸들러
+  const handleTextBoxChange = (id: number, newText: string) => {
+    setTextBoxes((prev) =>
+      prev.map((box) =>
+        box.id === id ? { ...box, text: newText } : box
+      )
+    );
+  };
+
   // 기본 슬라이드 썸네일 1
   const [slides, setSlides] = useState<Slide[]>([
     { id: 1, thumbnail: '' },
@@ -44,38 +74,38 @@ function App() {
       const active = document.activeElement as HTMLElement;
       const isInThumbnail = active?.closest('.slide-thumbnails');
       if (!isInThumbnail) return;
-  
+
       if (e.key === 'Backspace') {
         e.preventDefault();
         if (slides.length <= 1) return;
-  
+
         const currentIndex = slides.findIndex((s) => s.id === currentSlide);
         const updated = slides.filter((s) => s.id !== currentSlide);
         const reindexed = updated.map((s, i) => ({ ...s, id: i + 1 }));
         setSlides(reindexed);
-  
+
         const nextIndex = Math.max(0, currentIndex - 1);
         setCurrentSlide(reindexed[nextIndex].id);
       }
-  
+
       if (e.key === 'Enter') {
         e.preventDefault();
-  
+
         const currentIndex = slides.findIndex((s) => s.id === currentSlide);
         const newSlide = { id: 0, thumbnail: '' };
-  
+
         const updated = [
           ...slides.slice(0, currentIndex + 1),
           newSlide,
           ...slides.slice(currentIndex + 1),
         ];
-  
+
         const reindexed = updated.map((s, i) => ({ ...s, id: i + 1 }));
         setSlides(reindexed);
         setCurrentSlide(currentIndex + 2); // 새 슬라이드로 focus 이동
       }
     };
-  
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [slides, currentSlide]);
@@ -87,7 +117,7 @@ function App() {
       {/* 상단 네비게이션 바 컴포넌트 */}
       <TopNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {activeTab === '삽입' && <InsertRibbon onAddSlide={handleAddSlide} />}
+      {activeTab === '삽입' && <InsertRibbon onAddSlide={handleAddSlide} onAddTextBox={handleAddTextBox} />}
 
       <div className="editor-container">
         <SlideThumbnails
@@ -96,7 +126,11 @@ function App() {
           setCurrentSlide={setCurrentSlide}
         />
 
-        <SlideEditor onCapture={handleCapture} />
+        <SlideEditor
+          onCapture={handleCapture}
+          textBoxes={textBoxes}
+          onTextBoxChange={handleTextBoxChange}
+        />
       </div>
     </div>
   );
