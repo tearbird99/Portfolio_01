@@ -33,7 +33,7 @@ function App() {
       id: Date.now(),
       x: 200,
       y: 200,
-      text: '텍스트를 입력하세요',
+      text: '',
     };
     setTextBoxes((prev) => [...prev, newBox]);
   };  

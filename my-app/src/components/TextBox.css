@@ -1,7 +1,7 @@
 .text-box {
     padding: 6px 10px;
     min-width: 100px;
-    border: 1px dashed gray;
+    border: 1px solid gray;
     background: transparent;
     outline: none;
     cursor: text;
