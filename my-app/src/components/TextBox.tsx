@@ -4,10 +4,10 @@ import './TextBox.css'; // 텍스트 박스 스타일 import
 // TextBox 컴포넌트 Props 타입 정의
 interface TextBoxProps {
   id: number;                           // 텍스트 상자 고유 ID
-  x: number;                            // 텍스트 상자의 X 위치
-  y: number;                            // 텍스트 상자의 Y 위치
-  width: number;                        // 텍스트 상자의 폭
-  height: number;                       // 텍스트 상자의 높이
+  x?: number;                            // 텍스트 상자의 X 위치
+  y?: number;                            // 텍스트 상자의 Y 위치
+  width?: number;                        // 텍스트 상자의 폭
+  height?: number;                       // 텍스트 상자의 높이
   text: string;                         // 텍스트 상자에 표시될 텍스트
   onChange: (id: number, newText: string) => void; // 텍스트 수정 시 호출될 함수
 }
@@ -38,10 +38,10 @@ function TextBox({ id, x, y, width, height, text, onChange }: TextBoxProps) {
       suppressContentEditableWarning        // contentEditable 경고 억제
       style={{
         position: 'absolute',               // 절대 위치
-        top: y,                             // 상단 위치
-        left: x,                            // 왼쪽 위치
-        width,
-        height,
+        top: y ?? 0,                             // 상단 위치
+        left: x ?? 0,                            // 왼쪽 위치
+        width: width ?? 200,
+        height: height ?? 100,
         border: '1px solid #ccc',
         padding: '4px',
         overflow: 'hidden',

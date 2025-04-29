@@ -21,24 +21,24 @@ function App() {
   // 3. 텍스트 상자 타입 정의
   type TextBoxType = {
     id: number;         // 텍스트 상자 고유 ID
-    x: number;          // X 좌표 (px)
-    y: number;          // Y 좌표 (px)
-    width: number;      // 폭
-    height: number;     // 높이
+    x?: number;          // X 좌표 (px)
+    y?: number;          // Y 좌표 (px)
+    width?: number;      // 폭
+    height?: number;     // 높이
     text: string;       // 텍스트 상자 안에 들어갈 문자열
   };
+
+  // 3-1. 텍스트 상자 생성 여부 변수
+  const [isInsertingTextBox, setIsInsertingTextBox] = useState(false);
 
   // 4. 전체 텍스트 상자 목록 (현재 슬라이드에 표시될 상자들)
   const [textBoxes, setTextBoxes] = useState<Record<number, TextBoxType[]>>({});
 
   // 4-1. 텍스트 상자 추가 함수 (삽입 → 텍스트 상자 클릭 시)
   const handleAddTextBox = () => {
+    setIsInsertingTextBox(true); // 드래그를 허용하도록 설정
     const newBox: TextBoxType = {
       id: Date.now(),
-      x: 400,
-      y: 300,
-      width: 200,
-      height: 100,
       text: '',
     };
     setTextBoxes((prev) => ({
@@ -48,10 +48,12 @@ function App() {
   };
   // 드래그로 텍스트 박스 생성
   const handleAddTextBoxByDrag = (newBox: TextBoxType) => {
+    if (!isInsertingTextBox) return; // 플래그가 true일 때만 생성 허용
     setTextBoxes((prev) => ({
       ...prev,
       [currentSlide]: [...(prev[currentSlide] || []), newBox],
     }));
+    setIsInsertingTextBox(false); // 한 번 사용 후 비활성화
   };
 
   // 4-2. 텍스트 내용 수정 함수 (contentEditable 수정 시 호출)
@@ -149,7 +151,7 @@ function App() {
       {activeTab === '삽입' && (
         <InsertRibbon
           onAddSlide={handleAddSlide}
-          onAddTextBox={handleAddTextBox}
+          onAddTextBox={() => setIsInsertingTextBox(true)}
         />
       )}
 
@@ -165,7 +167,7 @@ function App() {
         {/* 오른쪽 슬라이드 에디터 */}
         <SlideEditor
           onCapture={handleCapture}
-          textBoxes={textBoxes[currentSlide] || []}  // 현재 슬라이드에 해당하는 것만 반영
+          textBoxes={textBoxes[currentSlide] ?? []}  // 현재 슬라이드에 해당하는 것만 반영
           onTextBoxChange={handleTextBoxChange}
           onAddTextBox={handleAddTextBoxByDrag}  // 드래그용 핸들러 넘김
         />
