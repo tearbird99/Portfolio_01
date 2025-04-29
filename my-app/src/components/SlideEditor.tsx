@@ -9,7 +9,7 @@ type TextBoxType = {
   x: number;     // X 위치
   y: number;     // Y 위치
   width: number;  // 폭
-  height: number; // 높이이
+  height: number; // 높이
   text: string;  // 텍스트 내용
 };
 
@@ -67,7 +67,20 @@ function SlideEditor({ onCapture, textBoxes, onTextBoxChange, onAddTextBox }: Sl
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging || !startPos) return;
     const rect = slideRef.current!.getBoundingClientRect();
-    setCurrentPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+
+    if (e.shiftKey) {
+      // 정사각형 모드일 경우
+      const dx = x - startPos.x;
+      const dy = y - startPos.y;
+      const size = Math.min(Math.abs(dx), Math.abs(dy));
+
+      x = startPos.x + Math.sign(dx) * size;
+      y = startPos.y + Math.sign(dy) * size;
+    }
+
+    setCurrentPos({ x, y });
   }
 
   const handleMouseUp = () => {
