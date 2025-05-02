@@ -1,9 +1,75 @@
 .text-box {
-    padding: 6px 10px;
-    min-width: 100px;
-    border: 1px solid gray;
-    background: transparent;
-    outline: none;
-    cursor: text;
-    font-size: 16px;
-  }
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  outline: none;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.text-box-wrapper {
+  border: 1px solid #ccc;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.resize-handle {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.resize-handle.top-left {
+  top: -6px;
+  left: -6px;
+  cursor: nwse-resize;
+}
+
+.resize-handle.top {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+}
+
+.resize-handle.top-right {
+  top: -6px;
+  right: -6px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.right {
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  cursor: ew-resize;
+}
+
+.resize-handle.bottom-right {
+  bottom: -6px;
+  right: -6px;
+  cursor: nwse-resize;
+}
+
+.resize-handle.bottom {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+}
+
+.resize-handle.bottom-left {
+  bottom: -6px;
+  left: -6px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.left {
+  top: 50%;
+  left: -6px;
+  transform: translateY(-50%);
+  cursor: ew-resize;
+}

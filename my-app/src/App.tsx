@@ -5,6 +5,7 @@ import TopNavbar from './components/TopNavBar';
 import SlideThumbnails from './components/SlideThumbnails';
 import SlideEditor from './components/SlideEditor';
 import InsertRibbon from './components/ribbonComponents/InsertRibbon';
+import HomeRibbon from './components/ribbonComponents/HomeRibbon';
 
 // App 컴포넌트: 전체 웹 파워포인트 앱의 루트 컴포넌트
 function App() {
@@ -147,7 +148,13 @@ function App() {
       {/* 상단 네비게이션 바 */}
       <TopNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* 리본바 삽입 메뉴 (activeTab === '삽입' 일 때만) */}
+      {/* 리본바 삽입 메뉴 */}
+      {activeTab == '홈' && (
+        <HomeRibbon
+          onUndo={handleAddSlide}
+        />
+      )}
+
       {activeTab === '삽입' && (
         <InsertRibbon
           onAddSlide={handleAddSlide}

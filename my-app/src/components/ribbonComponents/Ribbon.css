@@ -15,7 +15,11 @@
     align-items: center; /* 수직 정렬 중앙 */
     gap: 2px; /* 아이콘과 텍스트 사이 여백 */
     cursor: pointer;
-    user-select: none;
+    transition: background-color 0.15s ease;
+  }
+
+  .ribbon-button:hover {
+    background-color: #eaeaea;
   }
   
   .ribbon-button img {
